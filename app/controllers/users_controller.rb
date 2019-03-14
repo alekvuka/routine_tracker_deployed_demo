@@ -1,12 +1,17 @@
+require 'pry'
+
+
 class UsersController < ApplicationController
 
   def index
   end
 
   def new
+    @user = User.new
   end
 
   def create
+    binding.pry
   end
 
   def edit
@@ -17,6 +22,8 @@ class UsersController < ApplicationController
 
   def destroy
   end
+
+  
 
 
 end
