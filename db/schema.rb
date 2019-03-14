@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2019_03_13_224642) do
     t.integer "end_time"
     t.integer "number_completed"
     t.integer "number_prompted"
+    t.datetime "times_submitted"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

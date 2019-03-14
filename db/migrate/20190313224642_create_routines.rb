@@ -9,6 +9,8 @@ class CreateRoutines < ActiveRecord::Migration[5.2]
       t.integer :number_completed
       t.integer :number_prompted
 
+      t.datetime :times_submitted 
+
       t.timestamps
     end
   end
