@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password
 
   has_many :tasks
-  has_many :routines, through: :tasks
+  has_many :user_routines
+  has_many :routines, through: :user_routines
 
 end

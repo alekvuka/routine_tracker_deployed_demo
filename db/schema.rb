@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_13_224642) do
+ActiveRecord::Schema.define(version: 2019_03_15_230512) do
 
   create_table "routines", force: :cascade do |t|
     t.string "name"
     t.integer "start_time"
     t.integer "end_time"
+    t.integer "originator_id"
     t.integer "number_completed"
     t.integer "number_prompted"
     t.datetime "times_submitted"
@@ -30,6 +31,13 @@ ActiveRecord::Schema.define(version: 2019_03_13_224642) do
     t.integer "number_completed"
     t.integer "number_prompted"
     t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_routines", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "routine_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
