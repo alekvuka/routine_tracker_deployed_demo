@@ -15,5 +15,39 @@
 
   <br>
   <br>
+
+
+
+Add tasks to this routine from existing collection:
+  <br>
+  <%=collection_check_boxes(:task, :task_id, Task.all, :id, :name)%>
+  <br>
+  <br>
+  And/Or create your own tasks for this routine(up to 10!):
+  <br>
+  <label>Task 1 name:</label>
+  <%=text_field(:task, :name)%><br>
+  <label>Task 2 name:</label>
+  <%=text_field(:task, :name)%><br>
+  <label>Task 3 name:</label>
+  <%=text_field(:task, :name)%><br>
+  <label>Task 4 name:</label>
+  <%=text_field(:task, :name)%><br>
+  <label>Task 5 name:</label>
+  <%=text_field(:task, :name)%><br>
+  <label>Task 6 name:</label>
+  <%=text_field(:task, :name)%><br>
+  <label>Task 7 name:</label>
+  <%=text_field(:task, :name)%><br>
+  <label>Task 8 name:</label>
+  <%=text_field(:task, :name)%><br>
+  <label>Task 9 name:</label>
+  <%=text_field(:task, :name)%><br>
+  <label>Task 10 name:</label>
+  <%=text_field(:task, :name)%>
+
+
+  <br>
+  <br>
   <%= f.submit %>
 <% end %>
