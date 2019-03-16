@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
 
-  resources :tasks
+  resources :tasks, only: [:index, :show]
   resources :routines, only: [:index, :show]
   resources :users do
     resources :routines, only: [:new, :edit, :update, :create] do
       get '/add', to: 'users#add_routine'
+      resources :tasks, only: [:new, :edit, :update, :create]
     end
   end
 
