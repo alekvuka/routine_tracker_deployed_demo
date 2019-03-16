@@ -3,7 +3,7 @@
 
 <h1>Hello <%=User.find(session[:id]).name%>! </h1>
 
-You have <%=User.find(session[:id]).number_of_routines%> routines consisting of <%=User.find(session[:id]).number_of_tasks%> tasks in total!
+You have <%=User.find(session[:id]).number_of_routines%> <%= "routine".pluralize(User.find(session[:id]).number_of_routines)%> consisting of <%=User.find(session[:id]).number_of_tasks%> <%="task".pluralize(User.find(session[:id]).number_of_tasks)%> in total!
 <br>
 <br>
 <br>
