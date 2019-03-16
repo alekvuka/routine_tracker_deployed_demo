@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     #binding.pry
   end
 
-  def logout
+  def destroy
   end
 
 end

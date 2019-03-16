@@ -1,0 +1,14 @@
+<h1>Edit <%=@routine.name%></h1>
+
+<%= form_for [@user, @routine] do |f| %>
+  <label>Name:</label><br>
+  <%= f.text_field :name %><br>
+
+  <label>Start Time</label><br>
+  <%= f.text_field :start_time %><br>
+
+  <label>End Time</label><br>
+  <%= f.password_field :end_time %><br><br>
+
+  <%= f.submit %>
+<% end %>

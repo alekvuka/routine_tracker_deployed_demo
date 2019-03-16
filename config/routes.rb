@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
-  resources :routines
+
   resources :tasks
-  resources :users
+  resources :routines, only: [:index, :show]
+  resources :users do
+    resources :routines, only: [:new, :edit] do
+      get '/add', to: 'users#add_routine'
+    end
+  end
 
 
   post '/login', to: 'sessions#create'

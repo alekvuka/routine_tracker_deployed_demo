@@ -1,0 +1,4 @@
+<h1>Here Are All Of The Routines!</h1>
+<%Routine.all.each do |routine|%>
+<%=link_to( routine.name, routine_path(routine))%><br>
+<%end%>

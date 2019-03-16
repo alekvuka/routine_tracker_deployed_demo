@@ -1,0 +1,28 @@
+
+
+
+<h1>Hello <%=User.find(session[:id]).name%>! </h1>
+
+You have <%=User.find(session[:id]).number_of_routines%> routines consisting of <%=User.find(session[:id]).number_of_tasks%> tasks in total!
+<br>
+<br>
+<br>
+<h3>_______________________________________CURRENT_ROUTINE_________________________________________<h3>
+<% if User.find(session[:id]).number_of_routines != 0 && User.find(session[:id]).current_routine != nil %>
+      <h4> <%=User.find(session[:id]).current_routine.name%> </h4><br>
+<% elsif User.find(session[:id]).current_routine == nil %>
+      <h4> You do not have a current routine!</h4>
+      <h4>You can browse exiting ones <%= link_to('here', routines_path)%> or create your own <%= link_to('here', new_user_routine_path(User.find(session[:id])))%> ! </h4>
+<% end %>
+
+<br>
+<br>
+<br>
+<h3>_______________________________________UPCOMING_ROUTINE_________________________________________<h3>
+<% if User.find(session[:id]).upcoming_routine != nil %>
+    <h4>Your upcoming routine is: <%=User.find(session[:id]).upcoming_routine.name%>, is avalable from <%=User.find(session[:id]).upcoming_routine.start_time%> to <%=User.find(session[:id]).upcoming_routine.end_time%> <h4> <br>
+<% else %>
+    <h4> You do not have an upcoming routine! </h4>
+      <h4>You can browse exiting ones <%= link_to('here', routines_path)%> or create your own <%= link_to('here', new_user_routine_path(User.find(session[:id])))%> ! </h4>
+<%end%>
+<br>

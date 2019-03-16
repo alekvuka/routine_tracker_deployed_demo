@@ -1,0 +1,14 @@
+<h1><%=@routine.name%></h1>
+Start Time: <%=@routine.start_time%> <br>
+End Time: <%=@routine.end_time%> <br>
+<br>
+<br>
+Tasks:
+<%@routine.tasks.all.each do |tasks|%>
+<%=task.name%>
+<%end%>
+<br>
+<br>
+<%=link_to("Add this routine to your routines", user_routine_add_path(User.find(session[:id]), @routine))%>
+<%if session[:id] == @routine.originator.id%>
+<%= link_to('Edit this routine', edit_user_routine_path(User.find(session[:id]), @routine)) %>

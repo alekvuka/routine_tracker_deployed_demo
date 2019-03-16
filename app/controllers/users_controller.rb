@@ -5,12 +5,21 @@ class UsersController < ApplicationController
   def index
   end
 
+  def add_routine
+
+    
+    redirect_to user_path(User.find(params[:user_id]))
+
+  end
+
   def new
     @user = User.new
   end
 
   def create
-    binding.pry
+    @user = User.create(user_params)
+    session[:id] = @user.id
+    redirect_to user_path(@user)
   end
 
   def edit
@@ -23,7 +32,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :username, :email, :password_digest)
+    params.require(:user).permit(:name, :username, :email, :password, :password_confirmation)
   end
 
   #USER ORIGINATOR COLUMN IN ROUTINE TABLE
