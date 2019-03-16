@@ -9,6 +9,7 @@ class RoutinesController < ApplicationController
   end
 
   def create
+    #binding.pry
     @routine = Routine.create(routine_params)
     @routine.originator_id = User.find(params[:user_id]).id
     @routine.users << User.find(params[:user_id])
@@ -17,12 +18,12 @@ class RoutinesController < ApplicationController
   end
 
   def edit
-    @routine = Routine.find(params[:routine_id])
+    @routine = Routine.find(params[:id])
     @user = User.find(params[:user_id])
   end
 
   def update
-    @routine = Routine.find(params[:routine_id])
+    @routine = Routine.find(params[:id])
     @routine.update(routine_params)
     redirect_to user_path(User.find(params[:user_id]))
   end

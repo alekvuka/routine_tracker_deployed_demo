@@ -3,8 +3,8 @@ class CreateRoutines < ActiveRecord::Migration[5.2]
     create_table :routines do |t|
 
       t.string :name
-      t.integer :start_time
-      t.integer :end_time
+      t.string :start_time
+      t.string :end_time
 
       t.integer :originator_id
 

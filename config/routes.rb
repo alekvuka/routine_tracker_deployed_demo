@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :tasks
   resources :routines, only: [:index, :show]
   resources :users do
-    resources :routines, only: [:new, :edit] do
+    resources :routines, only: [:new, :edit, :update, :create] do
       get '/add', to: 'users#add_routine'
     end
   end
