@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   resources :tasks, only: [:index, :show]
   resources :routines, only: [:index, :show]
+
   resources :users do
+    get '/my_routines', to: 'users#my_routines'
     resources :routines, only: [:new, :edit, :update, :create] do
       get '/add', to: 'users#add_routine'
       resources :tasks, only: [:new, :edit, :update, :create]
@@ -11,6 +13,7 @@ Rails.application.routes.draw do
 
 
   post '/login', to: 'sessions#create'
+  get '/logout', to: 'sessions#destroy'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

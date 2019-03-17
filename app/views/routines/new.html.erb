@@ -20,7 +20,7 @@
 
 Add tasks to this routine from existing collection:
   <br>
-  <%=collection_check_boxes(:task, :task_id, Task.all, :id, :name)%>
+  <%=collection_check_boxes(:task, :task_id, Task.unique_names, :id, :name)%>
   <br>
   <br>
   And/Or create your own tasks for this routine(up to 10!):
@@ -45,7 +45,7 @@ Add tasks to this routine from existing collection:
   <%=text_field(:task, :name9)%><br>
   <label>Task 10 name:</label>
   <%=text_field(:task, :name10)%>
-  
+
   <br>
   <br>
   <%= f.submit %>

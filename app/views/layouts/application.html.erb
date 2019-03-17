@@ -11,5 +11,15 @@
 
   <body>
     <%= yield %>
+    <br>
+    <br>
+
+
+    <%if !session[:id].nil?%>
+      ____________________________________________________________
+      <br>
+      <%= link_to('log-out', logout_path) %>
+      <br>
+    <%end%>
   </body>
 </html>

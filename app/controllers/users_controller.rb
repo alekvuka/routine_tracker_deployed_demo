@@ -14,6 +14,10 @@ class UsersController < ApplicationController
 
   end
 
+  def my_routines
+    
+  end
+
   def new
     @user = User.new
   end

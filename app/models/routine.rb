@@ -4,14 +4,21 @@ class Routine < ActiveRecord::Base
     has_many :user_routines
     has_many :users, through: :user_routines
 
-    def duration
+
+
+    def current_routine(user)
     end
+
+
+    def upcoming_routine(user)
+    end
+
 
     def add_tasks(tasks, user)
 
       tasks[:task_id].each do |task|
           if !task.empty?
-            self.tasks << Task.find(task)
+            self.tasks << Task.create(name: Task.find(task).name, routine: self, user: User.find(user))
           end
        end
 
@@ -19,11 +26,9 @@ class Routine < ActiveRecord::Base
 
        tasks.each do |key, value|
          if !value.empty?
-           #binding.pry
            self.tasks << Task.create(name: value, routine: self, user: User.find(user))
          end
        end
-
 
     end
 
