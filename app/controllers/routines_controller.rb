@@ -1,7 +1,6 @@
 class RoutinesController < ApplicationController
 
   def index
-
   end
 
   def new
