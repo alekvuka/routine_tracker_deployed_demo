@@ -2,6 +2,9 @@ require 'pry'
 
 class UsersController < ApplicationController
 
+  #before_action :load_user, only: [:edit, :update]
+
+
   def index
   end
 
@@ -44,8 +47,6 @@ class UsersController < ApplicationController
       User.find(params[:id]).save
       redirect_to user_path(User.find(params[:id]))
     end
-
-  
   end
 
   def destroy
