@@ -1,6 +1,13 @@
 
 <h1>Create User</h1>
 
+<% if flash[:messages] != nil %>
+  <%flash[:messages].each do |message|%>
+    <b>!!!!----<%=message%>---!!!<br></b>
+  <%end%>
+<%end%>
+
+<br>
 <%= form_for(@user) do |f| %>
   <label>Name:</label><br>
   <%= f.text_field :name %><br>

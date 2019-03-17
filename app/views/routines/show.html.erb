@@ -5,8 +5,8 @@ End Time: <%=@routine.end_time%> <br>
 <br>
 <br>
 Tasks:
-<%@routine.tasks.all.each do |tasks|%>
-<%=task.name%>
+<%@routine.tasks.all.each do |task|%>
+<ul><%=task.name%></ul>
 <%end%>
 <br>
 <br>
