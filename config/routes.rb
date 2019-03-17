@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+
+  root to: "static#index"
+
   resources :tasks, only: [:index, :show]
   resources :routines, only: [:index, :show]
 
