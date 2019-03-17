@@ -15,7 +15,6 @@ class UsersController < ApplicationController
   end
 
   def my_routines
-    
   end
 
   def new
@@ -39,6 +38,14 @@ class UsersController < ApplicationController
   end
 
   def update
+    if !params[:user][:routine_to_delete].nil?
+      User.find(params[:id]).routines.delete(Routine.find(params[:user][:routine_to_delete]))
+      #find all tasks where the routine_id is the routine chosen and user_id is the user and delete those tasks
+      User.find(params[:id]).save
+      redirect_to user_path(User.find(params[:id]))
+    end
+
+  
   end
 
   def destroy

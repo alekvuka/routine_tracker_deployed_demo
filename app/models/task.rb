@@ -6,14 +6,16 @@ class Task < ActiveRecord::Base
   def self.unique_names
 
     names = Array.new
+    ret = Array.new
 
     Task.all.each do |task|
-      if !names.include?(task)
-        names << task
+      if !names.include?(task.name)
+        names << task.name
+        ret << task
       end
     end
 
-    names
+    ret
 
   end
 

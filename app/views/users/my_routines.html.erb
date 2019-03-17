@@ -1,0 +1,24 @@
+<%=User.find(session[:id]).name%>, here are your routines:
+<br>
+<%User.find(session[:id]).routines.each do |routine|%>
+  <br>
+  <%= routine.name %>
+  <%routine.tasks.each do |task|%>
+    <li><%=task.name%></li>
+  <%end%>
+  <% if routine.originator_id == session[:id] %>
+    <%=link_to('Edit this routine', edit_user_routine_path(User.find(session[:id]), routine))%>
+    <br>
+    or
+  <%end%>
+  <br>
+
+  <%= form_for User.find(session[:id]) do |f| %>
+    <%= f.hidden_field :routine_to_delete, value: routine.id %>
+    <%= f.submit "Delete this routine from your routines" %>
+  <%end%>
+
+  <br>
+  ------------------------------
+  <br>
+<%end%>

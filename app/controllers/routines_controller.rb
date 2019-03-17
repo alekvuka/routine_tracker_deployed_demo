@@ -24,6 +24,7 @@ class RoutinesController < ApplicationController
   end
 
   def update
+    binding.pry
     @routine = Routine.find(params[:id])
     @routine.update(routine_params)
     redirect_to user_path(User.find(params[:user_id]))

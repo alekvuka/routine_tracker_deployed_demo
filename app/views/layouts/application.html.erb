@@ -18,7 +18,9 @@
     <%if !session[:id].nil?%>
       ____________________________________________________________
       <br>
-      <%= link_to('log-out', logout_path) %>
+      <%= link_to('log-out', logout_path) %> - - -
+      <%= link_to('home', user_path(session[:id])) %> - - -
+      <%= link_to('edit my profile', edit_user_path(session[:id])) %>
       <br>
     <%end%>
   </body>

@@ -3,7 +3,7 @@
 
 <h1>Hello <%=User.find(session[:id]).name%>! </h1>
 
-You have <%=User.find(session[:id]).number_of_routines%> <%= "routine".pluralize(User.find(session[:id]).number_of_routines)%> consisting of <%=User.find(session[:id]).number_of_tasks%> <%="task".pluralize(User.find(session[:id]).number_of_tasks)%>!
+You have <%= link_to(User.find(session[:id]).number_of_routines.to_s + " " + "routine".pluralize(User.find(session[:id]).number_of_routines), user_my_routines_path(session[:id]))%> consisting of <%=User.find(session[:id]).number_of_tasks%> <%="task".pluralize(User.find(session[:id]).number_of_tasks)%>!
 <br>
 <br>
 <br>
