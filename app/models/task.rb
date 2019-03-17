@@ -1,10 +1,13 @@
 class Task < ActiveRecord::Base
 
-  belongs_to :user
-  belongs_to :routine
+  validates :name, presence: true, uniqueness: true
 
-  #has_many users
-  #has_many routines_trheough users
+  has_many :task_routines
+  has_many :routines, through: :task_routines
+
+  has_many :task_users
+  has_many :users, through: :task_users
+
 
 
   def self.unique_names
