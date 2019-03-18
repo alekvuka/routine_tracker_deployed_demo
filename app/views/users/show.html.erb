@@ -21,7 +21,7 @@ consisting of <%= link_to(User.find(session[:id]).number_of_tasks.to_s + " " + "
 
 
 <% else  %>
-      <h4> You do not have a routine that is visible at the current time (<%=Time.now.strftime("%I:%M %p")%>)!</h4>
+      <h4> You do not have a routine that is applicable at the current time (<%=Time.now.strftime("%I:%M %p")%>)!</h4>
       <h4>You can browse exiting ones <%= link_to('here', routines_path)%> or create your own <%= link_to('here', new_user_routine_path(User.find(session[:id])))%> ! </h4>
 <% end %>
 
@@ -31,8 +31,7 @@ consisting of <%= link_to(User.find(session[:id]).number_of_tasks.to_s + " " + "
 <h3>_______________________________________UPCOMING_ROUTINE_________________________________________</h3>
 
 
-<% if !User.find(session[:id]).upcoming_routine.nil? && !User.find(session[:id]).upcoming_routine.id.nil?%>
-
+<% if !User.find(session[:id]).upcoming_routine.nil? &&  User.find(session[:id]).upcoming_routine.class.to_s != "Array"%>
     <h4>Your next routine, <%=User.find(session[:id]).upcoming_routine.name%>, is avalable from <%=User.find(session[:id]).upcoming_routine.start_time%> to <%=User.find(session[:id]).upcoming_routine.end_time%> </h4> <br>
 <% else %>
     <h4> You do not have an upcoming routine! </h4>

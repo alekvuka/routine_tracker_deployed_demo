@@ -1,3 +1,5 @@
-<%curren_user.tasks.each do |task|%>
-<%=link_to(task.name, task_path(task))%><br>
+<%curren_user.routines.each do |routine|%>
+  <%routine.tasks.each do |task|%>
+    <%=link_to(task.name, task_path(task))%><br>
+  <%end%?
 <%end%>

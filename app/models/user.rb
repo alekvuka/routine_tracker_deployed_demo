@@ -23,16 +23,18 @@ class User < ActiveRecord::Base
   end
 
   def current_routine
+
     self.routines.map do |routine|
-      if DateTime.parse(routine.start_time).strftime("%H").to_i <= Time.now.hour.to_i && DateTime.parse(routine.end_time).strftime("%H").to_i >= Time.now.hour.to_i
+      if routine.begin_hour <= routine.current_hour && routine.end_hour >= routine.current_hour
         routine
       end
-     end
+    end
+
   end
 
   def upcoming_routine
     self.routines.map do |routine|
-      if DateTime.parse(routine.end_time).strftime("%H").to_i >= Time.now.hour.to_i
+      if routine.end_hour >= routine.current_hour && !self.current_routine.include?(routine) 
         return routine
       end
      end
