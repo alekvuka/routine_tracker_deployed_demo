@@ -20,7 +20,9 @@
       <br>
       <%= link_to('log-out', logout_path) %> - - -
       <%= link_to('home', user_path(session[:id])) %> - - -
-      <%= link_to('edit my profile', edit_user_path(session[:id])) %>
+      <%= link_to('edit my profile', edit_user_path(session[:id])) %> - - -
+      <%= link_to('my routines', user_my_routines_path(session[:id]))%> - - -
+      <%= link_to('all routines', routines_path) %>
       <br>
     <%end%>
   </body>

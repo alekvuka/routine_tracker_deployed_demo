@@ -8,20 +8,32 @@ consisting of <%= link_to(User.find(session[:id]).number_of_tasks.to_s + " " + "
 <br>
 <br>
 <br>
-<h3>_______________________________________CURRENT_ROUTINE_________________________________________<h3>
-<% if User.find(session[:id]).number_of_routines != 0 && User.find(session[:id]).current_routine != nil %>
-      <h4> <%=User.find(session[:id]).current_routine.name%> </h4><br>
-<% elsif User.find(session[:id]).current_routine == nil %>
-      <h4> You do not have a current routine!</h4>
+<h3>_______________________________________CURRENT_ROUTINE_________________________________________</h3>
+<% if User.find(session[:id]).number_of_routines != 0 && User.find(session[:id]).current_routine[0] != nil %>
+
+      <% User.find(session[:id]).current_routine.each do |routine| %>
+        <%=routine.name%> (<%=routine.start_time%> to <%=routine.end_time%>)<br>
+        <%routine.tasks.each do |task|%>
+          <input type="checkbox" name="task" value="task"> <%=task.name%><br>
+        <%end%>
+        <br>
+      <%end%>
+
+
+<% else  %>
+      <h4> You do not have a routine that is visible at the current time (<%=Time.now.strftime("%I:%M %p")%>)!</h4>
       <h4>You can browse exiting ones <%= link_to('here', routines_path)%> or create your own <%= link_to('here', new_user_routine_path(User.find(session[:id])))%> ! </h4>
 <% end %>
 
 <br>
 <br>
 <br>
-<h3>_______________________________________UPCOMING_ROUTINE_________________________________________<h3>
-<% if User.find(session[:id]).upcoming_routine != nil %>
-    <h4>Your upcoming routine is: <%=User.find(session[:id]).upcoming_routine.name%>, is avalable from <%=User.find(session[:id]).upcoming_routine.start_time%> to <%=User.find(session[:id]).upcoming_routine.end_time%> <h4> <br>
+<h3>_______________________________________UPCOMING_ROUTINE_________________________________________</h3>
+
+
+<% if !User.find(session[:id]).upcoming_routine.nil? && !User.find(session[:id]).upcoming_routine.id.nil?%>
+
+    <h4>Your next routine, <%=User.find(session[:id]).upcoming_routine.name%>, is avalable from <%=User.find(session[:id]).upcoming_routine.start_time%> to <%=User.find(session[:id]).upcoming_routine.end_time%> </h4> <br>
 <% else %>
     <h4> You do not have an upcoming routine! </h4>
       <h4>You can browse exiting ones <%= link_to('here', routines_path)%> or create your own <%= link_to('here', new_user_routine_path(User.find(session[:id])))%> ! </h4>
