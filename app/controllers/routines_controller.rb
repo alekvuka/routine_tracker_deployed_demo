@@ -39,14 +39,11 @@ class RoutinesController < ApplicationController
        if !value.empty?
          task = Task.find_or_create_by(name: value)
          @routine.tasks << task
-         task.add_user(user)
-         task.save
        end
      end
 
-    #@routine.add_tasks(params[:task], params[:user_id])
     @routine.save
-    redirect_to user_path(User.find(params[:user_id]))
+    redirect_to user_path(curren_user)
 
   end
 
@@ -55,6 +52,7 @@ class RoutinesController < ApplicationController
   end
 
   def destroy
+    #delete the task
   end
 
   def routine_params

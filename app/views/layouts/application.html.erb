@@ -15,14 +15,15 @@
     <br>
 
 
-    <%if !session[:id].nil? && !session[:id] != ""%>
+    <%if current_user%>
       ____________________________________________________________
       <br>
       <%= link_to('log-out', logout_path) %> - - -
-      <%= link_to('home', user_path(session[:id])) %> - - -
-      <%= link_to('edit my profile', edit_user_path(session[:id])) %> - - -
-      <%= link_to('my routines', user_my_routines_path(session[:id]))%> - - -
+      <%= link_to('home', user_path(current_user)) %> - - -
+      <%= link_to('edit my profile', edit_user_path(current_user)) %> - - -
+      <%= link_to('my routines', user_my_routines_path(current_user)) %> - - -
       <%= link_to('all routines', routines_path) %>
+      <%= link_to('add a routine', new_user_routine_path(curren_user)) %>
       <br>
     <%end%>
   </body>

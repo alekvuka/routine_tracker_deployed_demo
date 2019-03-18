@@ -1,17 +1,15 @@
 
+<h1>Hello <%=@user.name%>! </h1>
 
-
-<h1>Hello <%=User.find(session[:id]).name%>! </h1>
-
-You have <%= link_to(User.find(session[:id]).number_of_routines.to_s + " " + "routine".pluralize(User.find(session[:id]).number_of_routines), user_my_routines_path(session[:id]))%>
-consisting of <%= link_to(User.find(session[:id]).number_of_tasks.to_s + " " + "task".pluralize(User.find(session[:id]).number_of_tasks), tasks_path) %>
+You have <%= link_to(@user.number_of_routines.to_s + " " + "routine".pluralize(@user.number_of_routines), user_my_routines_path(@user)) %>
+consisting of <%= link_to(@user.number_of_tasks.to_s + " " + "task".pluralize(@user.number_of_tasks), tasks_path) %>
 <br>
 <br>
 <br>
 <h3>_______________________________________CURRENT_ROUTINE_________________________________________</h3>
-<% if User.find(session[:id]).number_of_routines != 0 && User.find(session[:id]).current_routine[0] != nil %>
+<% if @user.number_of_routines != 0 && @user.current_routine[0] != nil %>
 
-      <% User.find(session[:id]).current_routine.each do |routine| %>
+      <% @user.current_routine.each do |routine| %>
         <%=routine.name%> (<%=routine.start_time%> to <%=routine.end_time%>)<br>
         <%routine.tasks.each do |task|%>
           <input type="checkbox" name="task" value="task"> <%=task.name%><br>
@@ -22,7 +20,7 @@ consisting of <%= link_to(User.find(session[:id]).number_of_tasks.to_s + " " + "
 
 <% else  %>
       <h4> You do not have a routine that is applicable at the current time (<%=Time.now.strftime("%I:%M %p")%>)!</h4>
-      <h4>You can browse exiting ones <%= link_to('here', routines_path)%> or create your own <%= link_to('here', new_user_routine_path(User.find(session[:id])))%> ! </h4>
+      <h4>You can browse exiting ones <%= link_to('here', routines_path)%> or create your own <%= link_to('here', new_user_routine_path(@user))%> ! </h4>
 <% end %>
 
 <br>
@@ -31,10 +29,10 @@ consisting of <%= link_to(User.find(session[:id]).number_of_tasks.to_s + " " + "
 <h3>_______________________________________UPCOMING_ROUTINE_________________________________________</h3>
 
 
-<% if !User.find(session[:id]).upcoming_routine.nil? &&  User.find(session[:id]).upcoming_routine.class.to_s != "Array"%>
-    <h4>Your next routine, <%=User.find(session[:id]).upcoming_routine.name%>, is avalable from <%=User.find(session[:id]).upcoming_routine.start_time%> to <%=User.find(session[:id]).upcoming_routine.end_time%> </h4> <br>
+<% if !@user.upcoming_routine.nil? &&  @user.upcoming_routine.class.to_s != "Array"%>
+    <h4>Your next routine, <%=@user.upcoming_routine.name%>, is avalable from <%=@user.upcoming_routine.start_time%> to <%=@user.upcoming_routine.end_time%> </h4> <br>
 <% else %>
     <h4> You do not have an upcoming routine! </h4>
-      <h4>You can browse exiting ones <%= link_to('here', routines_path)%> or create your own <%= link_to('here', new_user_routine_path(User.find(session[:id])))%> ! </h4>
+      <h4>You can browse exiting ones <%= link_to('here', routines_path)%> or create your own <%= link_to('here', new_user_routine_path(@user))%> ! </h4>
 <%end%>
 <br>
