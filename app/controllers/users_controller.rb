@@ -8,16 +8,15 @@ class UsersController < ApplicationController
 
   def add_routine
 
-    curren_user.routines << Routine.find(params[:routine_id])
+    current_user.routines << Routine.find(params[:routine_id])
     current_user.save
-    redirect_to user_path(curren_user)
+    redirect_to user_path(current_user)
 
   end
 
   def show
     @user = current_user
   end
-
 
   def my_routines
   end
