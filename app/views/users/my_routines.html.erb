@@ -1,5 +1,4 @@
-<%=User.find(session[:id]).name%>, here are your routines:
-<br>
+<h1><%=User.find(session[:id]).name%>, here are your routines:</h1>
 <%User.find(session[:id]).routines.each do |routine|%>
   <br>
   <%= routine.name %>

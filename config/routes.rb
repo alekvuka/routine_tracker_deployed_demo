@@ -4,10 +4,11 @@ Rails.application.routes.draw do
   root to: "static#index"
 
   resources :tasks, only: [:index, :show]
-  resources :routines, only: [:index, :show]
+  resources :routines, only: [:index, :show, :show]
 
   resources :users do
     get '/my_routines', to: 'users#my_routines'
+    get '/my_tasks', to: 'users#my_tasks'
     resources :routines, only: [:new, :edit, :update, :create] do
       get '/add', to: 'users#add_routine'
       resources :tasks, only: [:new, :edit, :update, :create]

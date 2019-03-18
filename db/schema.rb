@@ -17,9 +17,6 @@ ActiveRecord::Schema.define(version: 2019_03_17_231057) do
     t.string "start_time"
     t.string "end_time"
     t.integer "originator_id"
-    t.integer "number_completed"
-    t.integer "number_prompted"
-    t.datetime "times_submitted"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -40,11 +37,6 @@ ActiveRecord::Schema.define(version: 2019_03_17_231057) do
 
   create_table "tasks", force: :cascade do |t|
     t.string "name"
-    t.integer "user_id"
-    t.integer "routine_id"
-    t.integer "number_completed"
-    t.integer "number_prompted"
-    t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
