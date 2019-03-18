@@ -9,11 +9,10 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password
 
 
-  has_many :task_users
   has_many :user_routines
 
-  has_many :tasks, through: :task_users
   has_many :routines, through: :user_routines
+  has_many :tasks, through: :routines
 
 
   def number_of_routines
