@@ -8,18 +8,17 @@ class Task < ActiveRecord::Base
   has_many :task_users
   has_many :users, through: :task_users
 
-
-
-  def self.unique_names
-    names = Array.new
-    ret = Array.new
-    Task.all.each do |task|
-      if !names.include?(task.name)
-        names << task.name
-        ret << task
-      end
-    end
-    ret
+  def add_routine(routine)
+    self.routines << routine
+    self.save
+    self
   end
+
+  def add_user(user)
+    self.users << User.find(user)
+    self.save
+    self
+  end
+
 
 end

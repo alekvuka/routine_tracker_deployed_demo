@@ -14,10 +14,11 @@
 
 Add tasks to this routine from existing collection:
   <br>
-  <%=collection_check_boxes(:task, :task_id, Task.unique_names, :id, :name)%>
+  <%=collection_check_boxes(:task, :task_id, Task.all, :id, :name)%>
   <br>
   <br>
   And/Or create your own tasks for this routine(up to 10!):
+  <br>
   <br>
   <label>Task 1 name:</label>
   <%=text_field(:task, :name1)%><br>
