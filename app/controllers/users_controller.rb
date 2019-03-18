@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   def my_tasks
-  end 
+  end
 
   def new
     @user = User.new
@@ -42,16 +42,33 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
   end
 
   def update
     if !params[:user][:routine_to_delete].nil?
       User.find(params[:id]).routines.delete(Routine.find(params[:user][:routine_to_delete]))
       #find all tasks where the routine_id is the routine chosen and user_id is the user and delete those tasks
-
-
       User.find(params[:id]).save
       redirect_to user_path(User.find(params[:id]))
+    else
+      @user = User.find(params[:id])
+      @user.update(name: params[:user][:name], username: params[:user][:username], email: params[:user][:email])
+
+      if @user.valid? != true
+        flash[:messages] = @user.errors.full_messages
+        redirect_to edit_user_path(@user)
+      else
+        @user.routines.clear
+
+        params[:user][:routine_ids].each do |routine|
+          if !routine.empty?
+            @user.routines << Routine.find(routine)
+          end
+        end
+        @user.save
+        redirect_to user_path(@user)
+      end
     end
   end
 
