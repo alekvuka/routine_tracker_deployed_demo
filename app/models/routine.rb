@@ -21,7 +21,6 @@ class Routine < ActiveRecord::Base
           if !task.empty?
             task = Task.find(task)
             self.tasks << task
-            task.add_routine(self)
             task.add_user(user)
             task.save
           end

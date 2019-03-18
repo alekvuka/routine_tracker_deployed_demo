@@ -9,9 +9,9 @@ class Task < ActiveRecord::Base
   has_many :users, through: :task_users
 
   def add_routine(routine)
-    self.routines << routine
-    self.save
-    self
+    #self.routines << routine
+    #self.save
+    #self
   end
 
   def add_user(user)

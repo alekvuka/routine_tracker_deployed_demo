@@ -21,20 +21,14 @@ class User < ActiveRecord::Base
   end
 
   def number_of_tasks
-    #binding.pry
     self.tasks.count
   end
 
   def current_routine
+    #binding.pry
   end
 
   def upcoming_routine
-  end
-
-  def slug
-  end
-
-  def de_slug
   end
 
 end

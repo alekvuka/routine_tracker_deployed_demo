@@ -15,7 +15,7 @@
     <br>
 
 
-    <%if !session[:id].nil?%>
+    <%if !session[:id].nil? && !session[:id] != ""%>
       ____________________________________________________________
       <br>
       <%= link_to('log-out', logout_path) %> - - -
