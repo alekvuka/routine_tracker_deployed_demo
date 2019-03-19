@@ -9,7 +9,8 @@ consisting of <%= link_to(@user.number_of_tasks.to_s + " " + "task".pluralize(@u
 <h3>_______________________________________CURRENT_ROUTINE_________________________________________</h3>
 
 
-<% if @user.current_routine[0] != ""%>
+
+<% if !@user.current_routine.empty?%>
       <% @user.current_routine.each do |routine|   %>
         <%=routine.name%> (<%=routine.start_time%> to <%=routine.end_time%>)<br>
         <%routine.tasks.each do |task|%>
@@ -18,7 +19,7 @@ consisting of <%= link_to(@user.number_of_tasks.to_s + " " + "task".pluralize(@u
         <br>
       <%end%>
 
-<% else  %>
+<% else %>
       <h4> You do not have a routine that is applicable at the current time (<%=Time.now.strftime("%I:%M %p")%>)!</h4>
       <h4>You can browse exiting ones <%= link_to('here', routines_path)%> or create your own <%= link_to('here', new_user_routine_path(@user))%> ! </h4>
 <% end %>

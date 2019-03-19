@@ -1,7 +1,7 @@
 <h1><%=current_user.name%>, here are your routines:</h1>
 <%current_user.routines.each do |routine|%>
   <br>
-  <%= routine.name %>
+  <%= routine.name %> (<%=routine.start_time%> - <%=routine.end_time%>)
   <%routine.tasks.each do |task|%>
     <li><%=task.name%></li>
   <%end%>

@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
   end
 
   def create_with_google
-    user = User.find_by(email: auth[:info][:email], name: auth[:info][:email])
+    user = User.find_by(email: auth[:info][:email], name: auth[:info][:name])
     if user
       user.uid = auth[:uid]
       user.save
