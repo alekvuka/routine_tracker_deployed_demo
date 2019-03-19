@@ -1,5 +1,5 @@
-<%current_user.tasks.uniq.each do |routine|%>
-  <%routine.tasks.each do |task|%>
+<h1><%=current_user.name%>, here are your tasks: </h1>
+
+<%current_user.tasks.uniq.each do |task|%>
     <%=link_to(task.name, task_path(task))%><br>
-  <%end%?
 <%end%>
