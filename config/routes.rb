@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   resources :tasks, only: [:index, :show]
   resources :routines, only: [:index, :show, :show]
 
+  get '/auth/google_oauth2/callback' => 'sessions#create_with_google'
+
+
   resources :users do
     get '/my_routines', to: 'users#my_routines'
     get '/my_tasks', to: 'users#my_tasks'

@@ -18,6 +18,10 @@ gem 'uglifier', '>= 1.3.0'
 
 gem 'pry'
 gem 'bcrypt'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'dotenv-rails'
+
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
