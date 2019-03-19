@@ -6,6 +6,22 @@ class Task < ActiveRecord::Base
   has_many :routines, through: :task_routines
 
 
+
+  def all_users
+
+    users = Array.new
+    self.routines.each do |routine|
+      routine.users.each do |user|
+        users << user
+      end 
+    end
+
+    users.uniq
+
+
+  end
+
+
   def add_routine(routine)
     self.routines << routine
     self.save

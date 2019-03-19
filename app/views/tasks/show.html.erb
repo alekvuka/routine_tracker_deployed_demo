@@ -2,13 +2,13 @@
 
 <b>Here are all of the users for this task:</b>
 <br>
-<%@task.users.each do |user|%>
-<%=user.name%><br>
+<%@task.all_users.each do |user|%>
+  <%=user.username%><br>
 <%end%>
 <br>
 <br>
 <b>And here are all of the routines that this task is a part of:</b>
 <br>
 <%@task.routines.each do |routine|%>
-<%=link_to(routine.name, routine_path(routine))%><br>
+  <%=link_to(routine.name, routine_path(routine))%><br>
 <%end%>
