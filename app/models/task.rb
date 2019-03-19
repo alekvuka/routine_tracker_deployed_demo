@@ -12,11 +12,4 @@ class Task < ActiveRecord::Base
     self
   end
 
-  def add_user(user)
-    #self.users << User.find(user)
-    #self.save
-    #self
-  end
-
-
 end

@@ -1,10 +1,8 @@
 class User < ActiveRecord::Base
 
-
   has_many :user_routines
   has_many :routines, through: :user_routines
   has_many :tasks, through: :routines
-
 
   has_secure_password
 
@@ -12,7 +10,6 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true
   validates :username, presence: true, uniqueness: true
   validates :password, length: { minimum: 6,  allow_nil: true  }
-
 
   def number_of_routines
     self.routines.count
@@ -24,6 +21,7 @@ class User < ActiveRecord::Base
 
   def current_routine
     routines = Array.new
+
     self.routines.each do |routine|
       if routine.begin_hour <= routine.current_hour && routine.end_hour >= routine.current_hour
         routines << routine
@@ -35,6 +33,7 @@ class User < ActiveRecord::Base
   end
 
   def upcoming_routine
+
     self.routines.map do |routine|
       if routine.end_hour >= routine.current_hour && !self.current_routine.include?(routine)
         return routine
