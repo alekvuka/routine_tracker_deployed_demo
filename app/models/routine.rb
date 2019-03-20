@@ -24,7 +24,6 @@ class Routine < ActiveRecord::Base
           if !task.empty?
             task = Task.find(task)
             self.tasks << task
-            task.add_user(user)
             task.save
           end
        end
@@ -35,7 +34,6 @@ class Routine < ActiveRecord::Base
          if !value.empty?
            task = Task.find_or_create_by(name: value)
            self.tasks << task
-           task.add_user(user)
            task.save
          end
        end

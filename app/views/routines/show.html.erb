@@ -12,7 +12,6 @@ Tasks:
 <br>
 <br>
 
-
 <%if !current_user.routines.include?(@routine)%>
   <%=link_to("Add this routine to your routines", user_routine_add_path(current_user, @routine))%>
 <%else%>

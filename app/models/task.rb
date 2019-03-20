@@ -13,19 +13,11 @@ class Task < ActiveRecord::Base
     self.routines.each do |routine|
       routine.users.each do |user|
         users << user
-      end 
+      end
     end
 
     users.uniq
 
-
-  end
-
-
-  def add_routine(routine)
-    self.routines << routine
-    self.save
-    self
   end
 
 end
