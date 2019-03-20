@@ -1,5 +1,5 @@
 <h1>Here Are All Of The Routines!</h1>
 
 <%Routine.order_by_start_time.each do |routine|%>
-<%=link_to( routine.name, routine_path(routine))%>(<%=routine.start_time%> - <%=routine.end_time%>) <br>
+<%=link_to( routine.name, routine_path(routine))%>(<%=Routine.convert_from_24(routine.start_time)%> - <%=Routine.convert_from_24(routine.end_time)%>) <br>
 <%end%>

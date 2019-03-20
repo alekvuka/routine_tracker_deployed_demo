@@ -1,7 +1,7 @@
 <h1><%=@routine.name%></h1>
 
-Start Time: <%=@routine.start_time%> <br>
-End Time: <%=@routine.end_time%> <br>
+Start Time: <%=Routine.convert_from_24(@routine.start_time)%> <br>
+End Time: <%=Routine.convert_from_24(@routine.end_time)%> <br>
 <br>
 <br>
 Tasks:

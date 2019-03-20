@@ -9,6 +9,10 @@ class RoutinesController < ApplicationController
   end
 
   def create
+
+    params[:routine][:start_time] = Routine.convert_to_24(params[:routine][:start_time])
+    params[:routine][:end_time] = Routine.convert_to_24(params[:routine][:end_time])
+
     @routine = Routine.create(routine_params)
     @routine.originator_id = User.find(params[:user_id]).id
     @routine.users << User.find(params[:user_id])
@@ -23,6 +27,10 @@ class RoutinesController < ApplicationController
   end
 
   def update
+
+    params[:routine][:start_time] = Routine.convert_to_24(params[:routine][:start_time])
+    params[:routine][:end_time] = Routine.convert_to_24(params[:routine][:end_time])
+
     @routine = Routine.find(params[:id])
     @routine.update(routine_params)
     @routine.tasks.clear

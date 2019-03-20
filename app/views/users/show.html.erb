@@ -11,7 +11,7 @@ consisting of <%= link_to(@user.number_of_tasks.to_s + " " + "task".pluralize(@u
 
 <% if !@user.current_routine.empty?%>
       <% @user.current_routine.each do |routine|   %>
-        <%=routine.name%> (<%=routine.start_time%> to <%=routine.end_time%>)<br>
+        <%=routine.name%> (<%=Routine.convert_from_24(routine.start_time)%> to <%=Routine.convert_from_24(routine.end_time)%>)<br>
         <%routine.tasks.each do |task|%>
           <input type="checkbox" name="task" value="task"> <%=task.name%><br>
         <%end%>
@@ -19,7 +19,7 @@ consisting of <%= link_to(@user.number_of_tasks.to_s + " " + "task".pluralize(@u
       <%end%>
 
 <% else %>
-       You do not have a routine that is applicable at the current time (<%=Time.now.strftime("%I:%M %p")%>)! <br>
+       You do not have a routine that is applicable at the current time (<%=Time.now.strftime("%l:%M %p")%>)! <br>
        You can browse exiting ones <%= link_to('here', routines_path)%> or create your own <%= link_to('here', new_user_routine_path(@user))%> !
 <% end %>
 
@@ -30,7 +30,7 @@ consisting of <%= link_to(@user.number_of_tasks.to_s + " " + "task".pluralize(@u
 
 
 <% if !@user.upcoming_routine.nil? &&  @user.upcoming_routine.class.to_s != "Array"%>
-    <%= link_to(@user.upcoming_routine.name, routine_path(@user.upcoming_routine))%> ( <%=@user.upcoming_routine.start_time%> to <%=@user.upcoming_routine.end_time%> )  <br>
+    <%= link_to(@user.upcoming_routine.name, routine_path(@user.upcoming_routine))%> ( <%=Routine.convert_from_24(@user.upcoming_routine.start_time)%> to <%=Routine.convert_from_24(@user.upcoming_routine.end_time)%> )  <br>
 <% else %>
     You do not have an upcoming routine for the day! <br>
     You can browse exiting ones <%= link_to('here', routines_path)%> or create your own <%= link_to('here', new_user_routine_path(@user))%>!

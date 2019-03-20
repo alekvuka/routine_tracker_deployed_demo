@@ -5,9 +5,9 @@
     <%= f.text_field :name %><br><br>
 
     Routine avalable/visible from
-    <%= f.select :start_time, options_for_select(Routine.times, :selected => @routine.start_time)%> to
+    <%= f.select :start_time, options_for_select(Routine.times, :selected => Routine.convert_from_24(@routine.start_time))%> to
 
-    <%= f.select :end_time, options_for_select(Routine.times, :selected => @routine.end_time)%>
+    <%= f.select :end_time, options_for_select(Routine.times, :selected => Routine.convert_from_24(@routine.end_time))%>
 
     <br><br>
     Tasks for this Routine:<br>
