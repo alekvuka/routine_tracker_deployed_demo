@@ -6,7 +6,7 @@ consisting of <%= link_to(@user.number_of_tasks.to_s + " " + "task".pluralize(@u
 <br>
 <br>
 <br>
-<h3>_______________________________________CURRENT_ROUTINE_________________________________________</h3>
+<h3>_____________________________CURRENT_ROUTINE_______________________________</h3>
 
 
 <% if !@user.current_routine.empty?%>
@@ -26,13 +26,13 @@ consisting of <%= link_to(@user.number_of_tasks.to_s + " " + "task".pluralize(@u
 <br>
 <br>
 <br>
-<h3>_______________________________________UPCOMING_ROUTINE_________________________________________</h3>
+<h3>_____________________________UPCOMING_ROUTINE_______________________________</h3>
 
 
 <% if !@user.upcoming_routine.nil? &&  @user.upcoming_routine.class.to_s != "Array"%>
     <%= link_to(@user.upcoming_routine.name, routine_path(@user.upcoming_routine))%> ( <%=@user.upcoming_routine.start_time%> to <%=@user.upcoming_routine.end_time%> )  <br>
 <% else %>
-    <h4> You do not have an upcoming routine for the day! </h4>
-      <h4>You can browse exiting ones <%= link_to('here', routines_path)%> or create your own <%= link_to('here', new_user_routine_path(@user))%> ! </h4>
+    You do not have an upcoming routine for the day!
+    You can browse exiting ones <%= link_to('here', routines_path)%> or create your own <%= link_to('here', new_user_routine_path(@user))%>!
 <%end%>
 <br>
