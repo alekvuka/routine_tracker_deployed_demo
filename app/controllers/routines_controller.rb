@@ -16,7 +16,7 @@ class RoutinesController < ApplicationController
     @routine = Routine.create(routine_params)
     @routine.originator_id = User.find(params[:user_id]).id
     @routine.users << User.find(params[:user_id])
-    @routine.add_tasks(params[:task], params[:user_id])
+    @routine.add_tasks(params[:task])
     @routine.save
     redirect_to user_path(User.find(params[:user_id]))
   end

@@ -5,9 +5,9 @@
   <%= f.text_field :name %><br><br>
 
   Routine avalable/visible from
-  <%= f.select :start_time, options_for_select(Routine.times), { prompt: "Start Time" } %> to
+  <%= f.select :start_time, options_for_select(Routine.times), { prompt: "Start Time" }, :required => true %> to
 
-   <%= f.select :end_time, options_for_select(Routine.times), { prompt: "End Time" } %>
+   <%= f.select :end_time, options_for_select(Routine.times), { prompt: "End Time" }, :required => true %>
 
   <br>
   <br>

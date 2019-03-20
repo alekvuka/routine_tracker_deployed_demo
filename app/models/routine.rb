@@ -18,7 +18,7 @@ class Routine < ActiveRecord::Base
     end
 
 
-    def add_tasks(tasks, user)
+    def add_tasks(tasks)
 
       tasks[:task_id].each do |task|
           if !task.empty?
