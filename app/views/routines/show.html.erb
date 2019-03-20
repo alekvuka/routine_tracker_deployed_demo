@@ -22,5 +22,5 @@ Tasks:
 <br>
 
 <%if current_user.id == @routine.originator_id%>
-  <%= link_to('Edit this routine', edit_user_routine_path(curren_user, @routine)) %>
+  <%= link_to('Edit this routine', edit_user_routine_path(current_user, @routine)) %>
 <%end%>
