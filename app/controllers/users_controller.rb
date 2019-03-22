@@ -71,6 +71,13 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    if current_user = User.find(params[:id])
+      current_user.destroy
+      session.clear 
+      logout_path
+    else
+      user_path(User.find(params[:id]))
+    end
   end
 
   def user_params
