@@ -60,7 +60,14 @@ class RoutinesController < ApplicationController
   end
 
   def destroy
-    #delete the task
+
+    if current_user == User.find(params[:user_id]) && Routine.find_by_id(params[:id]).originator_id ==  current_user.id
+      Routine.find(params[:id]).delete
+      redirect_to user_path(current_user)
+    else
+      redirect_to logout_path
+    end
+
   end
 
   def routine_params

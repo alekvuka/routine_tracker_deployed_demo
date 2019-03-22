@@ -40,6 +40,8 @@ class Routine < ActiveRecord::Base
 
     end
 
+
+
     def self.convert_to_24(hour)
       DateTime.parse(hour).strftime("%H:%M").strip
     end
