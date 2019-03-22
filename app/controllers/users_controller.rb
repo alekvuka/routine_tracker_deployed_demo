@@ -34,7 +34,7 @@ class UsersController < ApplicationController
 
     if @user.valid? != true
       flash[:messages] = @user.errors.full_messages
-      redirect_to new_user_path
+      render 'new'
     else
       session[:user_id] = @user.id
       redirect_to user_path(@user)

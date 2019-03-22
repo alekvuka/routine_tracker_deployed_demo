@@ -10,11 +10,13 @@ Rails.application.routes.draw do
 
 
   resources :users do
-    get '/my_routines', to: 'users#my_routines'
+    get '/my_routines', to: 'users#my_routines' #users/1/routines _form 
     get '/my_tasks', to: 'users#my_tasks'
+    #get '/add', to: 'users#add_routine' put it here
+
+
     resources :routines, only: [:new, :edit, :update, :create, :destroy] do
       get '/add', to: 'users#add_routine'
-      resources :tasks, only: [:new, :edit, :update, :create]
     end
   end
 
