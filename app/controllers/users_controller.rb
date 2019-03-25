@@ -19,9 +19,13 @@ class UsersController < ApplicationController
   end
 
   def my_routines
+    @routines = current_user.routines
+    #render something here
   end
 
   def my_tasks
+    @tasks = current_user.tasks.uniq
+    render 'tasks/index'
   end
 
   def new
