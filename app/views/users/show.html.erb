@@ -1,8 +1,8 @@
 
 <h1>Hello <%=@user.name%>! </h1>
 
-You have <%= link_to(@user.number_of_routines.to_s + " " + "routine".pluralize(@user.number_of_routines), user_my_routines_path(@user)) %>
-consisting of <%= link_to(@user.number_of_tasks.to_s + " " + "task".pluralize(@user.number_of_tasks), user_my_tasks_path(@user)) %>
+You have <%= link_to(@user.number_of_routines.to_s + " " + "routine".pluralize(@user.number_of_routines), user_routines_path(@user)) %>
+consisting of <%= link_to(@user.number_of_tasks.to_s + " " + "task".pluralize(@user.number_of_tasks), user_tasks_path(@user)) %>
 <br>
 <br>
 <br>

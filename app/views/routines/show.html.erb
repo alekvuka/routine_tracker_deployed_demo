@@ -13,7 +13,7 @@ Tasks:
 <br>
 
 <%if !current_user.routines.include?(@routine)%>
-  <%=link_to("Add this routine to your routines", user_routine_add_path(current_user, @routine))%>
+  <%=link_to("Add this routine to your routines", user_add_path(@routine))%>
 <%else%>
   You already have this routine!
 <%end%>

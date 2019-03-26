@@ -1,25 +1,18 @@
 Rails.application.routes.draw do
 
-
   root to: "static#index"
 
   resources :tasks, only: [:index, :show]
-  resources :routines, only: [:index, :show, :show]
+  resources :routines, only: [:index, :show]
 
   get '/auth/google_oauth2/callback' => 'sessions#create_with_google'
 
-
   resources :users do
-    get '/my_routines', to: 'users#my_routines' #users/1/routines _form 
-    get '/my_tasks', to: 'users#my_tasks'
-    #get '/add', to: 'users#add_routine' put it here
-
-
-    resources :routines, only: [:new, :edit, :update, :create, :destroy] do
-      get '/add', to: 'users#add_routine'
-    end
+    get '/routines', to: 'users#routines'
+    get '/tasks', to: 'users#tasks'
+    get '/add', to: 'users#add_routine'
+    resources :routines, only: [:new, :edit, :update, :create, :destroy]
   end
-
 
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'

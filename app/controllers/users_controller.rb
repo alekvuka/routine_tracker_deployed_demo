@@ -3,27 +3,22 @@ require 'pry'
 class UsersController < ApplicationController
 
 
-  def index
-  end
-
   def add_routine
-
-    current_user.routines << Routine.find(params[:routine_id])
+    current_user.routines << Routine.find(params[:user_id])
     current_user.save
     redirect_to user_path(current_user)
-
   end
 
   def show
     @user = current_user
   end
 
-  def my_routines
+  def routines
     @routines = Routine.order_my_routines(current_user)
     render 'routines/index'
   end
 
-  def my_tasks
+  def tasks
     @tasks = current_user.tasks.uniq
     render 'tasks/index'
   end
