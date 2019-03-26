@@ -1,7 +1,6 @@
-require 'pry'
+
 
 class UsersController < ApplicationController
-
 
   def add_routine
     current_user.routines << Routine.find(params[:user_id])
@@ -28,9 +27,7 @@ class UsersController < ApplicationController
   end
 
   def create
-
     @user = User.create(user_params)
-
     if @user.valid? != true
       flash[:messages] = @user.errors.full_messages
       render 'new'
@@ -45,19 +42,18 @@ class UsersController < ApplicationController
   end
 
   def update
+    #binding.pry
     if !params[:user][:routine_to_delete].nil?
       current_user.routines.delete(Routine.find(params[:user][:routine_to_delete]))
       current_user.save
       redirect_to user_path(current_user)
     else
       current_user.update(name: params[:user][:name], username: params[:user][:username], email: params[:user][:email])
-
       if current_user.valid? != true
         flash[:messages] = current_user.errors.full_messages
         redirect_to edit_user_path(current_user)
       else
         current_user.routines.clear
-
         params[:user][:routine_ids].each do |routine|
           if !routine.empty?
             current_user.routines << Routine.find(routine)

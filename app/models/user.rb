@@ -22,19 +22,15 @@ class User < ActiveRecord::Base
 
   def current_routine
     routines = Array.new
-
     self.routines.each do |routine|
       if routine.begin_hour <= routine.current_hour && routine.end_hour >= routine.current_hour
         routines << routine
       end
     end
-
     routines
-
   end
 
   def upcoming_routine
-
     self.routines.map do |routine|
       if routine.end_hour >= routine.current_hour && !self.current_routine.include?(routine)
         return routine
