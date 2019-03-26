@@ -1,5 +1,38 @@
-<h1>Here Are All Of The Routines!</h1>
 
-<%Routine.order_by_start_time.each do |routine|%>
-<%=link_to( routine.name, routine_path(routine))%>(<%=Routine.convert_from_24(routine.start_time)%> - <%=Routine.convert_from_24(routine.end_time)%>) <br>
+
+<% if @routines == nil %>
+
+  <h1>Here Are All Of The Routines!</h1>
+
+  <%Routine.order_by_start_time.each do |routine|%>
+    <%=link_to( routine.name, routine_path(routine))%>(<%=Routine.convert_from_24(routine.start_time)%> - <%=Routine.convert_from_24(routine.end_time)%>) <br>
+  <%end%>
+
+<%else%>
+
+  <h1><%=current_user.name%>, here are your routines:</h1>
+
+  <%Routine.order_my_routines(current_user).each do |routine|%>
+    <br>
+    <%= routine.name %> (<%=Routine.convert_from_24(routine.start_time)%> - <%=Routine.convert_from_24(routine.end_time)%>)
+    <%routine.tasks.each do |task|%>
+      <li><%=task.name%></li>
+    <%end%>
+    <% if routine.originator_id == current_user.id %>
+      <%=link_to('Edit this routine', edit_user_routine_path(current_user, routine))%>
+      <br>
+      or
+    <%end%>
+    <br>
+  <%= form_for current_user do |f| %>
+    <%= f.hidden_field :routine_to_delete, value: routine.id %>
+    <%= f.submit "Delete this routine from your routines" %>
+  <%end%>
+
+  <br>
+  ------------------------------
+  <br>
+<%end%>
+
+
 <%end%>

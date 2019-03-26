@@ -21,6 +21,7 @@ class UsersController < ApplicationController
   def my_routines
     @routines = current_user.routines
     #render something here
+    render 'routines/index'
   end
 
   def my_tasks
