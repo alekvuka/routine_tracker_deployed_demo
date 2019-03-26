@@ -7,6 +7,12 @@
     <%= f.select :end_time, options_for_select(times, :selected => Routine.convert_from_24(@routine.end_time))%>
 
     <br><br>
+    Priority:
+    <input type="radio" name="priority" value="high"> High
+    <input type="radio" name="priority" value="normal" checked> Normal
+    <input type="radio" name="priority" value="low"> Low
+
+    <br><br>
     Tasks for this Routine:<br>
     <%= f.collection_check_boxes(:task_ids, Task.all, :id, :name)%>
     <br>

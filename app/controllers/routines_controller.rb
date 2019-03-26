@@ -10,12 +10,17 @@ class RoutinesController < ApplicationController
 
   def create
 
+    #binding.pry
+
     params[:routine][:start_time] = Routine.convert_to_24(params[:routine][:start_time])
     params[:routine][:end_time] = Routine.convert_to_24(params[:routine][:end_time])
 
     @routine = Routine.create(routine_params)
     @routine.originator_id = current_user.id
     @routine.users << current_user
+
+    @user_routine = UserRoutine.find_by(user: current_user, routine: @routine)
+    @user_routine.priority = params[:priority]
 
     if !params[:routine][:task_ids].reject(&:empty?).empty?
         params[:routine][:task_ids].reject(&:empty?).each do |task_id|
