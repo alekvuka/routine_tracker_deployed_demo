@@ -19,8 +19,7 @@ class UsersController < ApplicationController
   end
 
   def my_routines
-    @routines = current_user.routines
-    #render something here
+    @routines = Routine.order_my_routines(current_user)
     render 'routines/index'
   end
 
