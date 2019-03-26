@@ -42,13 +42,13 @@ class UsersController < ApplicationController
   end
 
   def update
-    #binding.pry
+
     if !params[:user][:routine_to_delete].nil?
       current_user.routines.delete(Routine.find(params[:user][:routine_to_delete]))
       current_user.save
       redirect_to user_path(current_user)
     else
-      current_user.update(name: params[:user][:name], username: params[:user][:username], email: params[:user][:email])
+      current_user.update(user_params)
       if current_user.valid? != true
         flash[:messages] = current_user.errors.full_messages
         redirect_to edit_user_path(current_user)

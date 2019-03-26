@@ -22,9 +22,10 @@
     <br><br>
   <%end%>
 
-  <label>Password</label><br>
-  <%= f.password_field :password %><br><br>
-
+  <%if @user.username == nil %>
+    <label>Password</label><br>
+    <%= f.password_field :password %><br><br>
+  <%end%>
 
   <%= f.submit  %>
 <% end %>
