@@ -1,27 +1,8 @@
 <h1>Update!</h1>
 
-<% if flash[:messages] != nil %>
-  <%flash[:messages].each do |message|%>
-    <b>!!!!----<%=message%>---!!!<br></b>
-  <%end%>
-<%end%>
-
 <br>
-<%= form_for(@user) do |f| %>
-  <label>Name:</label><br>
-  <%= f.text_field :name %><br>
-
-  <label>Username</label><br>
-  <%= f.text_field :username %><br>
-
-  <label>Email</label><br>
-  <%= f.email_field :email %><br><br>
-
-  <label>Routines:</label>
-  <%= f.collection_check_boxes(:routine_ids, Routine.all, :id, :name)%>
-  <br>
-
-  <%= f.submit  %>
-<% end %>
+  <%= render 'form' %>
 <br>
+
+
 <%= link_to("delete me :(", @user, method: :delete) %>
