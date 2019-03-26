@@ -1,48 +1,6 @@
 <h1>Edit <%=@routine.name%></h1>
 
-<%= form_for [@user, @routine] do |f| %>
-    <label>Name:</label>
-    <%= f.text_field :name %><br><br>
+<%= render 'form' %>
 
-    Routine avalable/visible from
-    <%= f.select :start_time, options_for_select(times, :selected => Routine.convert_from_24(@routine.start_time))%> to
-
-    <%= f.select :end_time, options_for_select(times, :selected => Routine.convert_from_24(@routine.end_time))%>
-
-    <br><br>
-    Tasks for this Routine:<br>
-    <%= f.collection_check_boxes(:task_ids, Task.all, :id, :name)%>
-    <br>
-    <br>
-    Or create a new task for this routine(up to 10!):
-      <br>
-      <label>Task 1 name:</label>
-      <%=text_field(:task, :name1)%><br>
-      <label>Task 2 name:</label>
-      <%=text_field(:task, :name2)%><br>
-      <label>Task 3 name:</label>
-      <%=text_field(:task, :name3)%><br>
-      <label>Task 4 name:</label>
-      <%=text_field(:task, :name4)%><br>
-      <label>Task 5 name:</label>
-      <%=text_field(:task, :name5)%><br>
-      <label>Task 6 name:</label>
-      <%=text_field(:task, :name6)%><br>
-      <label>Task 7 name:</label>
-      <%=text_field(:task, :name7)%><br>
-      <label>Task 8 name:</label>
-      <%=text_field(:task, :name8)%><br>
-      <label>Task 9 name:</label>
-      <%=text_field(:task, :name9)%><br>
-      <label>Task 10 name:</label>
-      <%=text_field(:task, :name10)%>
-
-      <br>
-      <br>
-
-  <br>
-  <br>
-  <%= f.submit %>
-<% end %>
 <br>
 <%= link_to("delete me :(", user_routine_path(@user, @routine), method: :delete) %>

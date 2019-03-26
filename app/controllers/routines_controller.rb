@@ -14,8 +14,15 @@ class RoutinesController < ApplicationController
     params[:routine][:end_time] = Routine.convert_to_24(params[:routine][:end_time])
 
     @routine = Routine.create(routine_params)
-    @routine.originator_id = User.find(params[:user_id]).id
-    @routine.users << User.find(params[:user_id])
+    @routine.originator_id = current_user.id
+    @routine.users << current_user
+
+    if !params[:routine][:task_ids].reject(&:empty?).empty?
+        params[:routine][:task_ids].reject(&:empty?).each do |task_id|
+          @routine.tasks << Task.find_by_id(task_id)
+        end
+    end
+
     @routine.add_tasks(params[:task])
     @routine.save
     redirect_to user_path(User.find(params[:user_id]))

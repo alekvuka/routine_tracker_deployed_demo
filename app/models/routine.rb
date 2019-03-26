@@ -12,22 +12,12 @@ class Routine < ActiveRecord::Base
 
     def add_tasks(tasks)
 
-      tasks[:task_id].each do |task|
-          if !task.empty?
-            task = Task.find(task)
-            self.tasks << task
-            task.save
-          end
-       end
-
-       tasks.delete(:task_id)
-
-       tasks.each do |key, value|
-         if !value.empty?
-           task = Task.find_or_create_by(name: value)
-           self.tasks << task
-           task.save
-         end
+      tasks.each do |key, value|
+       if !value.empty?
+         task = Task.find_or_create_by(name: value)
+         self.tasks << task
+         task.save
+        end
        end
 
     end
@@ -35,11 +25,15 @@ class Routine < ActiveRecord::Base
 
 
     def self.convert_to_24(hour)
-      DateTime.parse(hour).strftime("%H:%M").strip
+      if hour != nil
+        DateTime.parse(hour).strftime("%H:%M").strip
+      end
     end
 
     def self.convert_from_24(hour)
-      DateTime.parse(hour).strftime("%l:%M%P").strip
+      if hour != nil
+        DateTime.parse(hour).strftime("%l:%M%P").strip
+      end
     end
 
     def current_hour

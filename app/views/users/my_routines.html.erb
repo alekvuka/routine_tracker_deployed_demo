@@ -1,6 +1,5 @@
 <h1><%=current_user.name%>, here are your routines:</h1>
 
-
 <%Routine.order_my_routines(current_user).each do |routine|%>
   <br>
   <%= routine.name %> (<%=Routine.convert_from_24(routine.start_time)%> - <%=Routine.convert_from_24(routine.end_time)%>)
