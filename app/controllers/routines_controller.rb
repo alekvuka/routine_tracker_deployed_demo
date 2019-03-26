@@ -10,8 +10,6 @@ class RoutinesController < ApplicationController
 
   def create
 
-    #binding.pry
-
     params[:routine][:start_time] = Routine.convert_to_24(params[:routine][:start_time])
     params[:routine][:end_time] = Routine.convert_to_24(params[:routine][:end_time])
 
@@ -19,14 +17,8 @@ class RoutinesController < ApplicationController
     @routine.originator_id = current_user.id
     @routine.users << current_user
 
-    @user_routine = UserRoutine.find_by(user: current_user, routine: @routine)
-    @user_routine.priority = params[:priority]
-
-    if !params[:routine][:task_ids].reject(&:empty?).empty?
-        params[:routine][:task_ids].reject(&:empty?).each do |task_id|
-          @routine.tasks << Task.find_by_id(task_id)
-        end
-    end
+    set_priority
+    add_from_existing_tasks
 
     @routine.add_tasks(params[:task])
     @routine.save
@@ -45,22 +37,14 @@ class RoutinesController < ApplicationController
 
     @routine = Routine.find(params[:id])
     @routine.update(routine_params)
+
+    update_priority
+
     @routine.tasks.clear
 
-    params[:routine][:task_ids].each do |task|
-        if !task.empty?
-          task = Task.find(task)
-          @routine.tasks << task
-          task.save
-        end
-     end
+    add_from_existing_tasks
 
-     params[:task].each do |key, value|
-       if !value.empty?
-         task = Task.find_or_create_by(name: value)
-         @routine.tasks << task
-       end
-     end
+    @routine.add_tasks(params[:task])
 
     @routine.save
     redirect_to user_path(current_user)
@@ -84,6 +68,22 @@ class RoutinesController < ApplicationController
 
   def routine_params
     params.require(:routine).permit(:name, :start_time, :end_time, :originator_id, :task_ids)
+  end
+
+  private
+
+  def add_from_existing_tasks
+    if !params[:routine][:task_ids].reject(&:empty?).empty?
+        params[:routine][:task_ids].reject(&:empty?).each do |task_id|
+          @routine.tasks << Task.find_by_id(task_id)
+        end
+    end
+  end
+
+  def set_priority
+    user_routine = UserRoutine.find_by(user: current_user, routine: @routine)
+    user_routine.priority = params[:priority]
+    user_routine.save
   end
 
 end

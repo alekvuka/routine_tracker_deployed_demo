@@ -11,7 +11,12 @@ consisting of <%= link_to(@user.number_of_tasks.to_s + " " + "task".pluralize(@u
 
 <% if !@user.current_routine.empty?%>
       <% @user.current_routine.each do |routine|   %>
-        <%=routine.name%> (<%=Routine.convert_from_24(routine.start_time)%> to <%=Routine.convert_from_24(routine.end_time)%>)<br>
+        
+        <% if UserRoutine.find_by(user: @user, routine: routine).priority == 'high' %>
+            <b><%=routine.name%> (<%=Routine.convert_from_24(routine.start_time)%> to <%=Routine.convert_from_24(routine.end_time)%>)</b><br>
+        <%else%>
+              <%=routine.name%> (<%=Routine.convert_from_24(routine.start_time)%> to <%=Routine.convert_from_24(routine.end_time)%>)<br>
+        <%end%>
         <%routine.tasks.each do |task|%>
           <input type="checkbox" name="task" value="task"> <%=task.name%><br>
         <%end%>

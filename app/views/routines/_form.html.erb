@@ -8,9 +8,17 @@
 
     <br><br>
     Priority:
-    <input type="radio" name="priority" value="high"> High
-    <input type="radio" name="priority" value="normal" checked> Normal
-    <input type="radio" name="priority" value="low"> Low
+
+    <%if UserRoutine.find_by(user: @user, routine: @routine) != nil %>
+
+      <%= radio_button_tag :priority, "high", UserRoutine.find_by(user: @user, routine: @routine).priority == "high" || false %> <%= 'High' %>
+      <%= radio_button_tag :priority, "normal", UserRoutine.find_by(user: @user, routine: @routine).priority == "normal" || false  %> <%= 'Normal' %>
+      <%= radio_button_tag :priority, "low", UserRoutine.find_by(user: @user, routine: @routine).priority == "low" || false %> <%= 'Low' %>
+    <%else%>
+      <%= radio_button_tag :priority, :high %> <%= 'High' %>
+      <%= radio_button_tag :priority, :normal, :checked %> <%= 'Normal' %>
+      <%= radio_button_tag :priority, :low %> <%= 'Low' %>
+    <%end%>
 
     <br><br>
     Tasks for this Routine:<br>

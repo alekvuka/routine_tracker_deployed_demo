@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2019_03_17_230823) do
   create_table "user_routines", force: :cascade do |t|
     t.integer "user_id"
     t.integer "routine_id"
+    t.string "priority"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

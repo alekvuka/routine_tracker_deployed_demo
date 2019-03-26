@@ -16,9 +16,15 @@
   <label>Email</label><br>
   <%= f.email_field :email %><br><br>
 
-  <label>Routines:</label>
-  <%= f.collection_check_boxes(:routine_ids, Routine.all, :id, :name)%>
-  <br>
+  <% if !@user.routines.empty?%>
+    <label>Routines:</label>
+    <%= f.collection_check_boxes(:routine_ids, Routine.all, :id, :name)%>
+    <br><br>
+  <%end%>
+
+  <label>Password</label><br>
+  <%= f.password_field :password %><br><br>
+
 
   <%= f.submit  %>
 <% end %>

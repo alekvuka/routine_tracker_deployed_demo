@@ -22,8 +22,6 @@ class Routine < ActiveRecord::Base
 
     end
 
-
-
     def self.convert_to_24(hour)
       if hour != nil
         DateTime.parse(hour).strftime("%H:%M").strip
@@ -57,10 +55,6 @@ class Routine < ActiveRecord::Base
 
     #user submittable attribute
     #get rid of some of the routines -> my_routines routes (exactly where the nested routes shoud come into play)
-
-
-
-
 
 
 end
