@@ -10,7 +10,7 @@ class Routine < ActiveRecord::Base
     scope :order_my_routines, -> (user) { user.routines.order(:start_time)}
 
 
-    def add_tasks(tasks)
+    def add_new_tasks(tasks)
 
       tasks.each do |key, value|
        if !value.empty?
@@ -51,10 +51,5 @@ class Routine < ActiveRecord::Base
 
       routine_end_hour
     end
-
-
-    #user submittable attribute
-    #get rid of some of the routines -> my_routines routes (exactly where the nested routes shoud come into play)
-
 
 end

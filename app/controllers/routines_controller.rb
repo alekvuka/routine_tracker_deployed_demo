@@ -9,46 +9,33 @@ class RoutinesController < ApplicationController
   end
 
   def create
-
-    params[:routine][:start_time] = Routine.convert_to_24(params[:routine][:start_time])
-    params[:routine][:end_time] = Routine.convert_to_24(params[:routine][:end_time])
-
+    convert_time_input_to_24hour
     @routine = Routine.create(routine_params)
     @routine.originator_id = current_user.id
     @routine.users << current_user
-
     set_priority
-    add_from_existing_tasks
-
-    @routine.add_tasks(params[:task])
+    add_existing_tasks
+    @routine.add_new_tasks(params[:task])
     @routine.save
-    redirect_to user_path(User.find(params[:user_id]))
+
+    redirect_to user_path(current_user)
   end
 
   def edit
     @routine = Routine.find(params[:id])
-    @user = User.find(params[:user_id])
   end
 
   def update
-
-    params[:routine][:start_time] = Routine.convert_to_24(params[:routine][:start_time])
-    params[:routine][:end_time] = Routine.convert_to_24(params[:routine][:end_time])
-
+    convert_time_input_to_24hour
     @routine = Routine.find(params[:id])
     @routine.update(routine_params)
-
-    update_priority
-
+    set_priority
     @routine.tasks.clear
-
-    add_from_existing_tasks
-
-    @routine.add_tasks(params[:task])
-
+    add_existing_tasks
+    @routine.add_new_tasks(params[:task])
     @routine.save
-    redirect_to user_path(current_user)
 
+    redirect_to user_path(current_user)
   end
 
   def show
@@ -56,14 +43,12 @@ class RoutinesController < ApplicationController
   end
 
   def destroy
-
     if current_user == User.find(params[:user_id]) && Routine.find_by_id(params[:id]).originator_id ==  current_user.id
       Routine.find(params[:id]).delete
       redirect_to user_path(current_user)
     else
       redirect_to logout_path
     end
-
   end
 
   def routine_params
@@ -72,7 +57,7 @@ class RoutinesController < ApplicationController
 
   private
 
-  def add_from_existing_tasks
+  def add_existing_tasks
     if !params[:routine][:task_ids].reject(&:empty?).empty?
         params[:routine][:task_ids].reject(&:empty?).each do |task_id|
           @routine.tasks << Task.find_by_id(task_id)
@@ -84,6 +69,11 @@ class RoutinesController < ApplicationController
     user_routine = UserRoutine.find_by(user: current_user, routine: @routine)
     user_routine.priority = params[:priority]
     user_routine.save
+  end
+
+  def convert_time_input_to_24hour
+    params[:routine][:start_time] = Routine.convert_to_24(params[:routine][:start_time])
+    params[:routine][:end_time] = Routine.convert_to_24(params[:routine][:end_time])
   end
 
 end

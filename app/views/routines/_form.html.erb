@@ -1,4 +1,4 @@
-<%= form_for [@user, @routine] do |f| %>
+<%= form_for [current_user, @routine] do |f| %>
     <label>Name:</label>
     <%= f.text_field :name %><br><br>
 
@@ -11,9 +11,9 @@
 
     <%if UserRoutine.find_by(user: @user, routine: @routine) != nil %>
 
-      <%= radio_button_tag :priority, "high", UserRoutine.find_by(user: @user, routine: @routine).priority == "high" || false %> <%= 'High' %>
-      <%= radio_button_tag :priority, "normal", UserRoutine.find_by(user: @user, routine: @routine).priority == "normal" || false  %> <%= 'Normal' %>
-      <%= radio_button_tag :priority, "low", UserRoutine.find_by(user: @user, routine: @routine).priority == "low" || false %> <%= 'Low' %>
+      <%= radio_button_tag :priority, "high", UserRoutine.find_by(user: current_user, routine: @routine).priority == "high" || false %> <%= 'High' %>
+      <%= radio_button_tag :priority, "normal", UserRoutine.find_by(user: current_user, routine: @routine).priority == "normal" || false  %> <%= 'Normal' %>
+      <%= radio_button_tag :priority, "low", UserRoutine.find_by(user: current_user, routine: @routine).priority == "low" || false %> <%= 'Low' %>
     <%else%>
       <%= radio_button_tag :priority, :high %> <%= 'High' %>
       <%= radio_button_tag :priority, :normal, :checked %> <%= 'Normal' %>
