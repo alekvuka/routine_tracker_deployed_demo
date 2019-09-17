@@ -3,4 +3,8 @@
 <%= render 'form' %>
 
 <br>
+
+<% @user = session[:user_id] %>
+
+
 <%= link_to("delete me :(", user_routine_path(@user, @routine), method: :delete) %>
