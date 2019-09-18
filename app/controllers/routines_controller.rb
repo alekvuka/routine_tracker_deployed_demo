@@ -67,7 +67,6 @@ class RoutinesController < ApplicationController
 
   def set_priority
     user_routine = UserRoutine.find_by(user: current_user, routine: @routine)
-    binding.pry
     user_routine.priority = params[:priority]
     user_routine.save
   end
