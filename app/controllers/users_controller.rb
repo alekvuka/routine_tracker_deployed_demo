@@ -2,6 +2,10 @@
 
 class UsersController < ApplicationController
 
+  def index
+    redirect_to '/'
+  end
+
   def add_routine
     current_user.routines << Routine.find(params[:user_id])
     current_user.save
