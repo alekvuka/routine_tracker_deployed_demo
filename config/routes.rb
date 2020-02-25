@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
   get '/auth/google_oauth2/callback' => 'sessions#create_with_google'
+  get '/demo', to: 'sessions#create_for_demo'
 
   resources :tasks, only: [:index, :show]
   resources :routines, only: [:index, :show]

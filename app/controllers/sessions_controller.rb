@@ -13,6 +13,11 @@ class SessionsController < ApplicationController
     end
   end
 
+  def create_for_demo
+    session[:user_id] = 1
+    redirect_to user_path(current_user)
+  end
+
   def create_with_google
     user = User.find_by(email: auth[:info][:email], name: auth[:info][:name])
     if user
