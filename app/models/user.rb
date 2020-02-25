@@ -31,11 +31,13 @@ class User < ActiveRecord::Base
   end
 
   def upcoming_routine
+    rout = Array.new
     self.routines.map do |routine|
       if routine.end_hour >= routine.current_hour && !self.current_routine.include?(routine)
-        return routine
+        rout.push(routine)
       end
      end
+     return rout
   end
 
 end
